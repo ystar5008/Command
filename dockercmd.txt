@@ -1,0 +1,60 @@
+도커 버젼확인
+docker --version
+
+설치된 도커 정보 확인
+docker info
+
+도커 이미지 다운로드 (kafka 최신 이미지)
+예시
+docker pull confluentinc/cp-kafka
+
+다운로드 받은 도커 이미지 목록
+docker images
+
+docker run --name 컨테이너에서실행할이름 실행할이미지이름
+예시
+docker run -d  --name thisiskafka  confluentinc/cp-kafka
+
+docker run -d --name thisiskafka \
+  -p 9092:9092 \
+  -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 \
+  -e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 \
+  confluentinc/cp-kafka
+
+
+중지된 컨테이너 실행
+docker start my-kafka or 7d52cfcb7a21
+
+컨테이너 중지
+docker stop my-kafka or 7d52cfcb7a21
+
+실행중인 컨테이너 확인
+docker ps
+
+실행중이지 않고 중단된 컨테이너까지 확인
+docker ps -a
+
+컨테이너 로그확인
+docker logs my-kafka or 7d52cfcb7a21
+
+컨테이너 쉘 접속 파워셀 or git bash
+docker exec -it 컨테이너_ID_또는_이름 /bin/bash
+docker exec -it my-kafka or 7d52cfcb7a21 /bin/bash
+
+볼륨 목록 확인
+docker volume ls
+
+컨테이너 네트워크 목록확인
+docker network ls
+
+이미지 빌든
+docker image bulid -t 이미지명[:태그명] Dockerfile경로
+
+컨테이너 접속
+docker attach 컨테이너ID
+
+도커
+sudo systemctl status docker
+
+특정 yml 파일실행
+docker-compose -f 파일이름.yml up -d
